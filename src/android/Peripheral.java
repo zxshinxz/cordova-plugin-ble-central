@@ -66,9 +66,9 @@ public class Peripheral extends BluetoothGattCallback {
         BluetoothDevice device = getDevice();
         connectCallback = callbackContext;
         if (Build.VERSION.SDK_INT < 23) {
-            gatt = device.connectGatt(activity, false, this);
+            gatt = device.connectGatt(activity, true, this);
         } else {
-            gatt = device.connectGatt(activity, false, this, BluetoothDevice.TRANSPORT_LE);
+            gatt = device.connectGatt(activity, true, this, BluetoothDevice.TRANSPORT_LE);
         }
 
         PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
@@ -81,8 +81,8 @@ public class Peripheral extends BluetoothGattCallback {
         connected = false;
         if (gatt != null) {
             gatt.disconnect();
-            gatt.close();
-            gatt = null;
+            //gatt.close();
+            //gatt = null;
         }
     }
 
